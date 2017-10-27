@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/default_text_item_recycler"
+        android:paddingTop="@dimen/padding_top_item_recycler"
+        android:textSize="@dimen/size_text_item_recycler"
+        android:paddingBottom="@dimen/padding_bottom_item_recycler"/>
+
+</LinearLayout>

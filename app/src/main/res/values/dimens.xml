@@ -1,0 +1,14 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="size_text_item_recycler">20sp</dimen>
+    <dimen name="padding_bottom_item_recycler">8dp</dimen>
+    <dimen name="padding_top_item_recycler">8dp</dimen>
+    <dimen name="padding_top_edit_text">8dp</dimen>
+    <dimen name="padding_bottom_edit_text">8dp</dimen>
+    <dimen name="margin_bottom_tv_title">8dp</dimen>
+    <dimen name="margin_container_edit_fields">16dp</dimen>
+    <dimen name="margin_bottom_edit_text">8dp</dimen>
+    <dimen name="margin_top_edit_text">8dp</dimen>
+    <dimen name="padding_bottom_tv_title">16dp</dimen>
+    <dimen name="padding_top_tv_title">16dp</dimen>
+</resources>

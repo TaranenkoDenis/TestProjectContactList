@@ -1,0 +1,73 @@
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.projects.personal.denis.testprojectcontactlist.views.fragments.ContactFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin_container_edit_fields">
+
+        <EditText
+            android:id="@+id/et_firstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_bottom_edit_text"
+            android:paddingTop="@dimen/padding_top_edit_text"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:hint="@string/first_name_edit_text"
+            android:inputType="textPersonName"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_secondName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_bottom_edit_text"
+            android:paddingTop="@dimen/padding_top_edit_text"
+            android:hint="@string/second_name_edit_text"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:inputType="textPersonName"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_bottom_edit_text"
+            android:paddingTop="@dimen/padding_top_edit_text"
+            android:hint="@string/address_edit_text"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:inputType="text"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_bottom_edit_text"
+            android:paddingTop="@dimen/padding_top_edit_text"
+            android:hint="@string/phone_edit_text"
+            android:layout_marginTop="@dimen/margin_top_edit_text"
+            android:layout_marginBottom="@dimen/margin_bottom_edit_text"
+            android:inputType="phone"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_done_24dp" />
+
+</android.support.design.widget.CoordinatorLayout>
