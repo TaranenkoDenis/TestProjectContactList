@@ -3,6 +3,7 @@ package com.projects.personal.denis.testprojectcontactlist.views.fragments;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.projects.personal.denis.testprojectcontactlist.App;
-import com.projects.personal.denis.testprojectcontactlist.RecyclerViewClickListener;
+import com.projects.personal.denis.testprojectcontactlist.tools.RecyclerViewClickListener;
 import com.projects.personal.denis.testprojectcontactlist.views.activities.MainActivity;
 import com.projects.personal.denis.testprojectcontactlist.R;
 import com.projects.personal.denis.testprojectcontactlist.adapters.ContactsAdapterRV;
@@ -51,12 +52,12 @@ public class ListFragment extends Fragment {
                 .subscribe().on(AndroidScheduler.mainThread())
                 .observer(new DataObserver<List<Contact>>() {
                     @Override
-                    public void onData(List<Contact> contacts) {
+                    public void onData(@NonNull List<Contact> contacts) {
                         contactsAdapter.setContacts(contacts);
                     }
                 });
 
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerContacts);
+        RecyclerView recyclerView = v.findViewById(R.id.recyclerContacts);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -83,8 +84,7 @@ public class ListFragment extends Fragment {
                 });
         recyclerView.setAdapter(contactsAdapter);
 
-
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        FloatingActionButton fab = v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

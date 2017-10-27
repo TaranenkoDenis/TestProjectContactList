@@ -1,25 +1,19 @@
 package com.projects.personal.denis.testprojectcontactlist.adapters;
 
-import android.app.Activity;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.projects.personal.denis.testprojectcontactlist.R;
-import com.projects.personal.denis.testprojectcontactlist.RecyclerViewClickListener;
+import com.projects.personal.denis.testprojectcontactlist.tools.RecyclerViewClickListener;
 import com.projects.personal.denis.testprojectcontactlist.models.Contact;
 import com.projects.personal.denis.testprojectcontactlist.tools.MyDiffCallbackContact;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by denis on 26.10.17.
- */
 
 public class ContactsAdapterRV extends RecyclerView.Adapter<ContactsAdapterRV.ContactViewHolder>{
 
@@ -35,7 +29,7 @@ public class ContactsAdapterRV extends RecyclerView.Adapter<ContactsAdapterRV.Co
 
         ContactViewHolder(View itemView, RecyclerViewClickListener clickListener) {
             super(itemView);
-            tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            tv_name = itemView.findViewById(R.id.tv_name);
             this.clickListener = clickListener;
             itemView.setOnClickListener(this);
         }

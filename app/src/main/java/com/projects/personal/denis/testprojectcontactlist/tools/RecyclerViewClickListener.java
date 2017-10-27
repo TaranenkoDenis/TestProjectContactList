@@ -1,10 +1,6 @@
-package com.projects.personal.denis.testprojectcontactlist;
+package com.projects.personal.denis.testprojectcontactlist.tools;
 
 import android.view.View;
-
-/**
- * Created by denis on 27.10.17.
- */
 
 public interface RecyclerViewClickListener{
     void onClick(View v, int position);
