@@ -28,9 +28,6 @@ import io.objectbox.android.AndroidScheduler;
 import io.objectbox.reactive.DataObserver;
 import io.objectbox.reactive.DataSubscription;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class ListFragment extends Fragment {
 
 

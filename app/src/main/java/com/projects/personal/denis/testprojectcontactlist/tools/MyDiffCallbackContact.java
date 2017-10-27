@@ -6,14 +6,11 @@ import com.projects.personal.denis.testprojectcontactlist.models.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
-/**
- * Created by denis on 26.10.17.
- */
 
 public class MyDiffCallbackContact extends DiffUtil.Callback {
 
-    List<Contact> oldList;
-    List<Contact> newList;
+    private List<Contact> oldList;
+    private List<Contact> newList;
 
     public MyDiffCallbackContact(List<Contact> oldList, List<Contact> newList) {
         this.oldList = new ArrayList<>();

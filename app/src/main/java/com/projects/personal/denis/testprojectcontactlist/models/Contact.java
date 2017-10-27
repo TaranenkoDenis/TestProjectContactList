@@ -3,10 +3,6 @@ package com.projects.personal.denis.testprojectcontactlist.models;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
-/**
- * Created by denis on 26.10.17.
- */
-
 @Entity
 public class Contact {
     @Id

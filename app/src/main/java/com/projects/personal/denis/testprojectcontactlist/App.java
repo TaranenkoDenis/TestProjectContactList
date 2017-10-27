@@ -6,10 +6,6 @@ import com.projects.personal.denis.testprojectcontactlist.models.MyObjectBox;
 
 import io.objectbox.BoxStore;
 
-/**
- * Created by denis on 26.10.17.
- */
-
 public class App extends Application {
     private static final String TAG = App.class.getSimpleName();
 

@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.InputType;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,18 +85,18 @@ public class ContactFragment extends Fragment {
         BoxStore boxStore = ((App)getActivity().getApplication()).getBoxStore();
         contactsBox = boxStore.boxFor(Contact.class);
 
-        etFirstName = (EditText) v.findViewById(R.id.et_firstName);
-        etSecondName = (EditText) v.findViewById(R.id.et_secondName);
-        etAddress = (EditText) v.findViewById(R.id.et_address);
-        etPhoneNumber = (EditText) v.findViewById(R.id.et_phone);
+        etFirstName = v.findViewById(R.id.et_firstName);
+        etSecondName = v.findViewById(R.id.et_secondName);
+        etAddress = v.findViewById(R.id.et_address);
+        etPhoneNumber = v.findViewById(R.id.et_phone);
 
-        fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        fab = v.findViewById(R.id.fab);
         fab.setOnClickListener(fabClickListener);
 
         if(mParam1 == PARAM_VIEW_OLD_CONTACT){
             Contact contact = contactsBox.get(mParam2);
             showContact(contact);
-            setMode(true);
+            setMode(false);
         }
         return v;
     }
