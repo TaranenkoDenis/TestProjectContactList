@@ -112,8 +112,4 @@ public class ListFragment extends Fragment {
             activity.hideUpButton();
         }
     }
-
-    public interface GetterOfBox{
-        Box<Contact> getBox();
-    }
 }

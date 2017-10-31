@@ -33,8 +33,6 @@ public class ContactFragment extends Fragment {
     public static final int PARAM_NEW_CONTACT = 1;
     public static final int PARAM_VIEW_OLD_CONTACT = 2;
 
-    private DataSubscription subscription;
-
     private static boolean isModeViewing = false;
     private static boolean isNeedToHideVirtualKeyboard = false;
 
@@ -105,7 +103,7 @@ public class ContactFragment extends Fragment {
             editableContact = contactsBox.get(mParam2);
             showContact(editableContact);
             setMode(true);
-        }
+        } else setMode(false);
         return v;
     }
 
@@ -188,7 +186,7 @@ public class ContactFragment extends Fragment {
                     Contact tmp = null;
 
                     if(editableContact != null){
-                        Log.d(TAG, "else if(editableContact != null)");
+                        Log.d(TAG, "editableContact != null. Finish ");
                         editableContact.setFirst_name(etFirstName.getText().toString());
                         editableContact.setSecond_name(etSecondName.getText().toString());
                         editableContact.setAddress(etAddress.getText().toString());
@@ -204,12 +202,15 @@ public class ContactFragment extends Fragment {
                                 etPhoneNumber.getText().toString()
                         );
                         Log.d(TAG, "New contact. \n" + tmp.toString());
+                        editableContact = tmp;
                     }
                     contactsBox.put(tmp);
                     Log.d(TAG, "Database after putting new contact: " + contactsBox.getAll());
                     setMode(true);
                 }
-            } else setMode(false);
+            } else {
+                setMode(false);
+            }
         }
     };
 }

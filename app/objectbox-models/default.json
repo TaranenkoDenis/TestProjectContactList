@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:274479938848543338",
-      "lastPropertyId": "5:2850422778148100536",
+      "lastPropertyId": "6:7737589266712490598",
       "name": "Contact",
       "properties": [
         {
@@ -40,7 +40,9 @@
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    7737589266712490598
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

@@ -40,14 +40,13 @@ public class ContactsAdapterRV extends RecyclerView.Adapter<ContactsAdapterRV.Co
         }
     }
 
-    public ContactsAdapterRV(RecyclerViewClickListener clickListener){
-        this.contacts = new ArrayList<>();
-        this.clickListenerItem = clickListener;
-    }
-
     public ContactsAdapterRV(List<Contact> contacts, RecyclerViewClickListener clickListener){
-        this.contacts = contacts;
         this.clickListenerItem = clickListener;
+
+        if(contacts == null)
+            this.contacts = new ArrayList<>();
+        else
+            this.contacts = contacts;
     }
 
     @Override
