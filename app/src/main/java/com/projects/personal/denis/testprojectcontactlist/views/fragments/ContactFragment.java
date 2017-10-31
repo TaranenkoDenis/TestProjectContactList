@@ -7,6 +7,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +35,8 @@ public class ContactFragment extends Fragment {
 
     private DataSubscription subscription;
 
-    private static boolean isModeViewing = true;
+    private static boolean isModeViewing = false;
+    private static boolean isNeedToHideVirtualKeyboard = false;
 
     private int mParam1;
     private long mParam2;
@@ -45,6 +47,8 @@ public class ContactFragment extends Fragment {
     private EditText etPhoneNumber;
     private Box<Contact> contactsBox;
     private FloatingActionButton fab;
+
+    private Contact editableContact = null;
 
 
     public ContactFragment() {
@@ -93,10 +97,14 @@ public class ContactFragment extends Fragment {
         fab = v.findViewById(R.id.fab);
         fab.setOnClickListener(fabClickListener);
 
+        Log.d(TAG, "mParam1 = " + mParam1 + "\nmParam2 = " + mParam2);
+
+
         if(mParam1 == PARAM_VIEW_OLD_CONTACT){
-            Contact contact = contactsBox.get(mParam2);
-            showContact(contact);
-            setMode(false);
+            Log.d(TAG, "Old contact in view mode.");
+            editableContact = contactsBox.get(mParam2);
+            showContact(editableContact);
+            setMode(true);
         }
         return v;
     }
@@ -115,9 +123,7 @@ public class ContactFragment extends Fragment {
 
             case android.R.id.home:
                 FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.container_fragment, new ListFragment());
-                ft.commit();
+                fm.popBackStack();
                 return true;
 
             default:
@@ -132,23 +138,26 @@ public class ContactFragment extends Fragment {
         isModeViewing = mode;
         if(!isModeViewing){
 
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            etFirstName.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+            etSecondName.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+            etPhoneNumber.setInputType(InputType.TYPE_CLASS_PHONE);
+            etAddress.setInputType(InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
+            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_done_24dp));
+
+            isNeedToHideVirtualKeyboard = true;
+        } else {
+
+            if(isNeedToHideVirtualKeyboard) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            }
 
             etFirstName.setInputType(InputType.TYPE_NULL);
             etSecondName.setInputType(InputType.TYPE_NULL);
             etPhoneNumber.setInputType(InputType.TYPE_NULL);
             etAddress.setInputType(InputType.TYPE_NULL);
             fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_mode_edit_24dp));
-        } else {
-
-            etFirstName.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
-            etSecondName.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
-            etPhoneNumber.setInputType(InputType.TYPE_CLASS_PHONE);
-            etAddress.setInputType(InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
-            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_done_24dp));
         }
-
     }
 
     @Override
@@ -164,20 +173,40 @@ public class ContactFragment extends Fragment {
     View.OnClickListener fabClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            Log.d(TAG, "Click on fab. isModeViewing = " + isModeViewing);
+
             if(!isModeViewing) {
                 if (etFirstName.getText().length() == 0 ||
                         etSecondName.getText().length() == 0 ||
                         etAddress.getText().length() == 0 ||
-                        etPhoneNumber.getText().length() == 0)
+                        etPhoneNumber.getText().length() == 0) {
+
                     Toast.makeText(getActivity(), "Fill in all the fields.", Toast.LENGTH_SHORT).show();
+                }
                 else {
-                    Contact c = new Contact(
-                            etFirstName.getText().toString(),
-                            etSecondName.getText().toString(),
-                            etAddress.getText().toString(),
-                            etPhoneNumber.getText().toString()
-                    );
-                    contactsBox.put(c);
+                    Contact tmp = null;
+
+                    if(editableContact != null){
+                        Log.d(TAG, "else if(editableContact != null)");
+                        editableContact.setFirst_name(etFirstName.getText().toString());
+                        editableContact.setSecond_name(etSecondName.getText().toString());
+                        editableContact.setAddress(etAddress.getText().toString());
+                        editableContact.setPhone_number(etPhoneNumber.getText().toString());
+
+                        tmp = editableContact;
+                    }
+                    else {
+                        tmp = new Contact(
+                                etFirstName.getText().toString(),
+                                etSecondName.getText().toString(),
+                                etAddress.getText().toString(),
+                                etPhoneNumber.getText().toString()
+                        );
+                        Log.d(TAG, "New contact. \n" + tmp.toString());
+                    }
+                    contactsBox.put(tmp);
+                    Log.d(TAG, "Database after putting new contact: " + contactsBox.getAll());
                     setMode(true);
                 }
             } else setMode(false);

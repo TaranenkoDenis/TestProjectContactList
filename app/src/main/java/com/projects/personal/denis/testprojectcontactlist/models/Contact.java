@@ -69,4 +69,14 @@ public class Contact {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "super.toString() = " + super.toString() + "\n"
+                + "id = " + id + "\n"
+                + "first_name = " + first_name + "\n"
+                + "second_name = " + second_name + "\n"
+                + "address = " + address + "\n"
+                + "phone_number = " + phone_number;
+    }
 }
